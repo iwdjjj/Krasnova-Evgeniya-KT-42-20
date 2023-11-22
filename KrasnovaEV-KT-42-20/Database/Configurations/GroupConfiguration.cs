@@ -31,6 +31,18 @@ namespace KrasnovaEV_KT_42_20.Database.Configurations
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Название группы");
 
+            builder.Property(p => p.GroupJob)
+                .IsRequired()
+                .HasColumnName("GroupJob")
+                .HasColumnType(ColumnType.String).HasMaxLength(100)
+                .HasComment("Специальность группы");
+
+            builder.Property(p => p.GroupYear)
+                .IsRequired()
+                .HasColumnName("GroupYear")
+                .HasColumnType(ColumnType.String).HasMaxLength(100)
+                .HasComment("Год поступления");
+
             builder.Property(p => p.StudentQuantity)
                 .IsRequired()
                 .HasColumnName("StudentQuantity")

@@ -19,6 +19,8 @@ namespace KrasnovaEV_KT_42_20.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false, comment: "Идентификатор записи группы")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     GroupName = table.Column<string>(type: "varchar", maxLength: 100, nullable: false, comment: "Название группы"),
+                    GroupJob = table.Column<string>(type: "varchar", maxLength: 100, nullable: false, comment: "Специальность группы"),
+                    GroupYear = table.Column<string>(type: "varchar", maxLength: 100, nullable: false, comment: "Год поступления"),
                     StudentQuantity = table.Column<int>(type: "int4", nullable: false, comment: "Количество студентов в группе"),
                     IsDeleted = table.Column<bool>(type: "bool", nullable: false, comment: "Статус удаления")
                 },
@@ -34,6 +36,7 @@ namespace KrasnovaEV_KT_42_20.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false, comment: "Идентификатор записи дисциплины")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     SubjectName = table.Column<string>(type: "varchar", maxLength: 100, nullable: false, comment: "Название дисциплины"),
+                    SubjectDescription = table.Column<string>(type: "varchar", maxLength: 100, nullable: false, comment: "Направление дисциплины"),
                     IsDeleted = table.Column<bool>(type: "bool", nullable: false, comment: "Статус удаления")
                 },
                 constraints: table =>
@@ -47,9 +50,9 @@ namespace KrasnovaEV_KT_42_20.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false, comment: "Идентификатор записи студента")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirstName = table.Column<string>(type: "varchar", maxLength: 100, nullable: false, comment: "Имя студента"),
-                    LastName = table.Column<string>(type: "varchar", maxLength: 100, nullable: false, comment: "Фамилия студента"),
-                    MiddleName = table.Column<string>(type: "varchar", maxLength: 100, nullable: true, comment: "Отчество студента"),
+                    Surname = table.Column<string>(type: "varchar", maxLength: 100, nullable: false, comment: "Имя студента"),
+                    Name = table.Column<string>(type: "varchar", maxLength: 100, nullable: false, comment: "Фамилия студента"),
+                    Midname = table.Column<string>(type: "varchar", maxLength: 100, nullable: false, comment: "Отчество студента"),
                     GroupId = table.Column<int>(type: "int4", nullable: false, comment: "Идентификатор группы"),
                     IsDeleted = table.Column<bool>(type: "bool", nullable: false, comment: "Статус удаления")
                 },

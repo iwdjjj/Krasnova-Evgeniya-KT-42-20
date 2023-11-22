@@ -31,6 +31,12 @@ namespace KrasnovaEV_KT_42_20.Database.Configurations
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Название дисциплины");
 
+            builder.Property(p => p.SubjectDescription)
+                .IsRequired()
+                .HasColumnName("SubjectDescription")
+                .HasColumnType(ColumnType.String).HasMaxLength(100)
+                .HasComment("Направление дисциплины");
+
             builder.Property(p => p.IsDeleted)
                 .IsRequired()
                 .HasColumnName("IsDeleted")

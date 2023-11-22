@@ -7,11 +7,11 @@ namespace KrasnovaEV_KT_42_20.Database
     public class StudentDbContext : DbContext
     {
         //Добавляем таблицы
-        DbSet<Exam> Exams { get; set; }
-        DbSet<Grade> Grades { get; set; }
-        DbSet<Group> Groups { get; set; }
-        DbSet<Student> Students { get; set; }
-        DbSet<Subject> Subjects { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

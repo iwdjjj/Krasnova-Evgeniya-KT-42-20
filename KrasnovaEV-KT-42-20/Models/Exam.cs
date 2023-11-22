@@ -1,4 +1,6 @@
-﻿namespace KrasnovaEV_KT_42_20.Models
+﻿using System.Text.Json.Serialization;
+
+namespace KrasnovaEV_KT_42_20.Models
 {
     public class Exam
     {
@@ -8,9 +10,11 @@
         public string? ExamCondition { get; set; }
 
         public int? SubjectId { get; set; }
+        [JsonIgnore]
         public Subject? Subject { get; set; }
 
         public int? StudentId { get; set; }
+        [JsonIgnore]
         public Student? Student { get; set; }
     }
 }

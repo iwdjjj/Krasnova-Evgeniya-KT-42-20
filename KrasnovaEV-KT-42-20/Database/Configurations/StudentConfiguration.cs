@@ -25,20 +25,21 @@ namespace KrasnovaEV_KT_42_20.Database.Configurations
                 .HasComment("Идентификатор записи студента");
 
             //HasComment добавит комментарий, который будет отображаться в СУБД (добавлять по желанию)
-            builder.Property(p => p.FirstName)
+            builder.Property(p => p.Surname)
                 .IsRequired()
-                .HasColumnName("FirstName")
+                .HasColumnName("Surname")
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Имя студента");
 
-            builder.Property(p => p.LastName)
+            builder.Property(p => p.Name)
                 .IsRequired()
-                .HasColumnName("LastName")
+                .HasColumnName("Name")
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Фамилия студента");
 
-            builder.Property(p => p.MiddleName)
-                .HasColumnName("MiddleName")
+            builder.Property(p => p.Midname)
+                .IsRequired()
+                .HasColumnName("Midname")
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Отчество студента");
 
@@ -56,7 +57,7 @@ namespace KrasnovaEV_KT_42_20.Database.Configurations
 
             builder.ToTable(TableName)
                 .HasOne(p => p.Group)
-                .WithMany()
+                .WithMany(t => t.Students)
                 .HasForeignKey(p => p.GroupId)
                 .HasConstraintName("fk_f_group_id")
                 .OnDelete(DeleteBehavior.Cascade);

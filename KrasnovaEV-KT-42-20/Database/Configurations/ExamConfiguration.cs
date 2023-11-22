@@ -45,7 +45,7 @@ namespace KrasnovaEV_KT_42_20.Database.Configurations
 
             builder.ToTable(TableName)
                             .HasOne(p => p.Student)
-                            .WithMany()
+                            .WithMany(t => t.Exams)
                             .HasForeignKey(p => p.StudentId)
                             .HasConstraintName("fk_f_student_id")
                             .OnDelete(DeleteBehavior.Cascade);
@@ -59,7 +59,7 @@ namespace KrasnovaEV_KT_42_20.Database.Configurations
 
             builder.ToTable(TableName)
                             .HasOne(p => p.Subject)
-                            .WithMany()
+                            .WithMany(t => t.Exams)
                             .HasForeignKey(p => p.SubjectId)
                             .HasConstraintName("fk_f_subject_id")
                             .OnDelete(DeleteBehavior.Cascade);

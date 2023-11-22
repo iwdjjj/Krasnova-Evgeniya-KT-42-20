@@ -116,12 +116,26 @@ namespace KrasnovaEV_KT_42_20.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("GroupId"));
 
+                    b.Property<string>("GroupJob")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
+                        .HasColumnName("GroupJob")
+                        .HasComment("Специальность группы");
+
                     b.Property<string>("GroupName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar")
                         .HasColumnName("GroupName")
                         .HasComment("Название группы");
+
+                    b.Property<string>("GroupYear")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
+                        .HasColumnName("GroupYear")
+                        .HasComment("Год поступления");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bool")
@@ -150,13 +164,6 @@ namespace KrasnovaEV_KT_42_20.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("StudentId"));
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar")
-                        .HasColumnName("FirstName")
-                        .HasComment("Имя студента");
-
                     b.Property<int?>("GroupId")
                         .IsRequired()
                         .HasColumnType("int4")
@@ -168,18 +175,26 @@ namespace KrasnovaEV_KT_42_20.Migrations
                         .HasColumnName("IsDeleted")
                         .HasComment("Статус удаления");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("Midname")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar")
-                        .HasColumnName("LastName")
-                        .HasComment("Фамилия студента");
+                        .HasColumnName("Midname")
+                        .HasComment("Отчество студента");
 
-                    b.Property<string>("MiddleName")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar")
-                        .HasColumnName("MiddleName")
-                        .HasComment("Отчество студента");
+                        .HasColumnName("Name")
+                        .HasComment("Фамилия студента");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
+                        .HasColumnName("Surname")
+                        .HasComment("Имя студента");
 
                     b.HasKey("StudentId")
                         .HasName("pk_Students_Id");
@@ -204,6 +219,13 @@ namespace KrasnovaEV_KT_42_20.Migrations
                         .HasColumnName("IsDeleted")
                         .HasComment("Статус удаления");
 
+                    b.Property<string>("SubjectDescription")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
+                        .HasColumnName("SubjectDescription")
+                        .HasComment("Направление дисциплины");
+
                     b.Property<string>("SubjectName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -220,13 +242,13 @@ namespace KrasnovaEV_KT_42_20.Migrations
             modelBuilder.Entity("KrasnovaEV_KT_42_20.Models.Exam", b =>
                 {
                     b.HasOne("KrasnovaEV_KT_42_20.Models.Student", "Student")
-                        .WithMany()
+                        .WithMany("Exams")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("fk_f_student_id");
 
                     b.HasOne("KrasnovaEV_KT_42_20.Models.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Exams")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("fk_f_subject_id");
@@ -239,13 +261,13 @@ namespace KrasnovaEV_KT_42_20.Migrations
             modelBuilder.Entity("KrasnovaEV_KT_42_20.Models.Grade", b =>
                 {
                     b.HasOne("KrasnovaEV_KT_42_20.Models.Student", "Student")
-                        .WithMany()
+                        .WithMany("Grades")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("fk_f_student_id");
 
                     b.HasOne("KrasnovaEV_KT_42_20.Models.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Grades")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("fk_f_subject_id");
@@ -258,13 +280,32 @@ namespace KrasnovaEV_KT_42_20.Migrations
             modelBuilder.Entity("KrasnovaEV_KT_42_20.Models.Student", b =>
                 {
                     b.HasOne("KrasnovaEV_KT_42_20.Models.Group", "Group")
-                        .WithMany()
+                        .WithMany("Students")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_f_group_id");
 
                     b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("KrasnovaEV_KT_42_20.Models.Group", b =>
+                {
+                    b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("KrasnovaEV_KT_42_20.Models.Student", b =>
+                {
+                    b.Navigation("Exams");
+
+                    b.Navigation("Grades");
+                });
+
+            modelBuilder.Entity("KrasnovaEV_KT_42_20.Models.Subject", b =>
+                {
+                    b.Navigation("Exams");
+
+                    b.Navigation("Grades");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
 using KrasnovaEV_KT_42_20.Database;
+using KrasnovaEV_KT_42_20.ServiceExtensions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using NLog;
@@ -21,6 +22,8 @@ try
 
     builder.Services.AddDbContext<StudentDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    builder.Services.AddServices();
 
     var app = builder.Build();
 

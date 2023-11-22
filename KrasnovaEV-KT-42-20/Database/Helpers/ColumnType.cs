@@ -2,7 +2,7 @@
 {
     public class ColumnType
     {
-        public const string Date = "timestamp";
+        public const string Date = "datetime";
         public const string Guid = "uuid";
         public const string String = "varchar";
         public const string Text = "text";
