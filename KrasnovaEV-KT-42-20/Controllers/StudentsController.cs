@@ -38,13 +38,13 @@ namespace KrasnovaEV_KT_42_20.Controllers
             return Ok(students);
         }
 
-        //[HttpPost("GetStudentsByIsDeleted")]
-        //public async Task<IActionResult> GetStudentsByIsDeletedAsync(StudentIsDeletedFilter filter, CancellationToken cancellationToken = default)
-        //{
-        //    var students = await _studentService.GetStudentsByIsDeletedAsync(filter, cancellationToken);
+        [HttpPost("GetStudentsByIsDeleted")]
+        public async Task<IActionResult> GetStudentsByIsDeletedAsync(StudentIsDeletedFilter filter, CancellationToken cancellationToken = default)
+        {
+            var students = await _studentService.GetStudentsByIsDeletedAsync(filter, cancellationToken);
 
-        //    return Ok(students);
-        //}
+            return Ok(students);
+        }
 
         [HttpPost("AddStudent")]
         public IActionResult CreateStudent([FromBody] Student student)
@@ -73,6 +73,7 @@ namespace KrasnovaEV_KT_42_20.Controllers
             existingStudent.Name = updatedStudent.Name;
             existingStudent.Midname = updatedStudent.Midname;
             existingStudent.GroupId = updatedStudent.GroupId;
+            existingStudent.IsDeleted = updatedStudent.IsDeleted;
             _context.SaveChanges();
 
             return Ok();
@@ -87,8 +88,8 @@ namespace KrasnovaEV_KT_42_20.Controllers
             {
                 return NotFound();
             }
-            //existingStudent.IsDeleted = true;
-            _context.Students.Remove(existingStudent);
+            existingStudent.IsDeleted = true;
+            //_context.Students.Remove(existingStudent);
             _context.SaveChanges();
 
             return Ok();

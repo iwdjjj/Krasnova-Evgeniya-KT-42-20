@@ -27,7 +27,7 @@ namespace KrasnovaEV_KT_42_20.Interfaces
         }
         public Task<Student[]> GetStudentsByFIOAsync(StudentFIOFilter filter, CancellationToken cancellationToken = default)
         {
-            var students = _dbContext.Set<Student>().Where(w => (w.Surname == filter.FIO) || (w.Name == filter.FIO) || (w.Midname == filter.FIO)).Where(w => w.IsDeleted == filter.StudentIsDeleted).ToArrayAsync(cancellationToken);
+            var students = _dbContext.Set<Student>().Where(w => (w.Surname == filter.Surname) || (w.Name == filter.Name) || (w.Midname == filter.Midname)).Where(w => w.IsDeleted == filter.StudentIsDeleted).ToArrayAsync(cancellationToken);
 
             return students;
         }

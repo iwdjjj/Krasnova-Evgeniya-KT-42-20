@@ -20,12 +20,12 @@ namespace KrasnovaEV_KT_42_20.Models
 
         public bool IsDeleted { get; set; }
 
-        public string? FIO
-        {
-            get
-            {
-                return Surname + " " + Name + " " + Midname;
-            }
-        }
+        //public string? FIO
+        //{
+        //    get
+        //    {
+        //        return Surname + " " + Name + " " + Midname;
+        //    }
+        //}
     }
 }
